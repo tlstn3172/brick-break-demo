@@ -54,7 +54,7 @@ export class Game {
 
     start() {
         this.state = GAME_STATES.PLAYING;
-        this.ball.launch(-Math.PI / 4); // Launch at 45 degrees
+        this.ball.launch(0); // Launch straight up
         this.lastTime = performance.now();
         this.gameLoop(this.lastTime);
     }
@@ -163,9 +163,9 @@ export class Game {
         this.paddle.x = this.canvas.width / 2;
         this.paddle.targetX = this.paddle.x;
 
-        // Position ball in center, between paddle and bricks
+        // Position ball just above paddle, in center
         const ballX = this.canvas.width / 2;
-        const ballY = this.canvas.height - GAME_CONFIG.PADDLE_Y_OFFSET - GAME_CONFIG.BALL_RADIUS - 10;
+        const ballY = this.paddle.y - GAME_CONFIG.BALL_RADIUS - 5;
         this.ball.reset(ballX, ballY);
         this.state = GAME_STATES.PAUSED;
     }
@@ -238,7 +238,7 @@ export class Game {
             this.start();
         } else if (this.state === GAME_STATES.PAUSED || this.state === GAME_STATES.LEVEL_COMPLETE) {
             this.state = GAME_STATES.PLAYING;
-            this.ball.launch(-Math.PI / 4);
+            this.ball.launch(0); // Launch straight up
             this.gameLoop(performance.now());
         }
     }
