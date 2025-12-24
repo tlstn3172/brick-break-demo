@@ -44,7 +44,7 @@ describe('Ball', () => {
             ball.launch(angle);
 
             const expectedVx = Math.sin(angle) * ball.speed;
-            const expectedVy = Math.cos(angle) * ball.speed;
+            const expectedVy = -Math.abs(Math.cos(angle)) * ball.speed; // Always negative (upward)
 
             expect(ball.velocity.x).toBeCloseTo(expectedVx);
             expect(ball.velocity.y).toBeCloseTo(expectedVy);
@@ -54,7 +54,7 @@ describe('Ball', () => {
             ball.launch(0);
 
             expect(ball.velocity.x).toBeCloseTo(0);
-            expect(ball.velocity.y).toBeGreaterThan(0); // Positive Y (cos(0) = 1)
+            expect(ball.velocity.y).toBeLessThan(0); // Negative Y is up
         });
     });
 
