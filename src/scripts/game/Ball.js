@@ -110,4 +110,26 @@ export class Ball {
         this.velocity.x = Math.sin(angle) * speed;
         this.velocity.y = Math.cos(angle) * speed;
     }
+
+    /**
+     * Render the ball on canvas
+     * @param {CanvasRenderingContext2D} ctx - Canvas context
+     */
+    render(ctx) {
+        if (!this.active) return;
+
+        ctx.save();
+
+        // Glow effect
+        ctx.shadowBlur = 15;
+        ctx.shadowColor = '#ffffff';
+
+        // Draw ball
+        ctx.fillStyle = '#ffffff';
+        ctx.beginPath();
+        ctx.arc(this.x, this.y, this.radius, 0, Math.PI * 2);
+        ctx.fill();
+
+        ctx.restore();
+    }
 }

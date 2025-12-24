@@ -88,4 +88,43 @@ export class Brick {
             height: this.height
         };
     }
+
+    /**
+     * Get colors for brick type
+     * @returns {Array} Color gradient [color1, color2]
+     */
+    getColors() {
+        const colorMap = {
+            [BRICK_TYPES.WEAK]: ['#2dd4bf', '#34d399'],
+            [BRICK_TYPES.MEDIUM]: ['#06b6d4', '#3b82f6'],
+            [BRICK_TYPES.STRONG]: ['#a855f7', '#9333ea'],
+        };
+        return colorMap[this.type] || ['#2dd4bf', '#34d399'];
+    }
+
+    /**
+     * Render the brick on canvas
+     * @param {CanvasRenderingContext2D} ctx - Canvas context
+     */
+    render(ctx) {
+        if (this.destroyed) return;
+
+        ctx.save();
+        ctx.globalAlpha = this.getOpacity();
+
+        // Gradient
+        const colors = this.getColors();
+        const gradient = ctx.createLinearGradient(this.x, this.y, this.x + this.width, this.y);
+        gradient.addColorStop(0, colors[0]);
+        gradient.addColorStop(1, colors[1]);
+
+        // Glow effect
+        ctx.shadowBlur = 10;
+        ctx.shadowColor = colors[0];
+
+        ctx.fillStyle = gradient;
+        ctx.fillRect(this.x, this.y, this.width, this.height);
+
+        ctx.restore();
+    }
 }

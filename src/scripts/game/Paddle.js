@@ -75,4 +75,29 @@ export class Paddle {
             height: this.height
         };
     }
+
+    /**
+     * Render the paddle on canvas
+     * @param {CanvasRenderingContext2D} ctx - Canvas context
+     */
+    render(ctx) {
+        const bounds = this.getBounds();
+
+        ctx.save();
+
+        // Glow effect
+        ctx.shadowBlur = 15;
+        ctx.shadowColor = '#0db9f2';
+
+        // Gradient
+        const gradient = ctx.createLinearGradient(bounds.x, bounds.y, bounds.x + bounds.width, bounds.y);
+        gradient.addColorStop(0, '#06b6d4');
+        gradient.addColorStop(0.5, '#0db9f2');
+        gradient.addColorStop(1, '#06b6d4');
+
+        ctx.fillStyle = gradient;
+        ctx.fillRect(bounds.x, bounds.y, bounds.width, bounds.height);
+
+        ctx.restore();
+    }
 }
