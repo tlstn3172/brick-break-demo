@@ -357,6 +357,30 @@ npm test
 npm run test:coverage
 ```
 
+### 🎮 게임 플레이 방법
+
+1. 개발 서버 실행 후 브라우저에서 http://localhost:3000/brick-break-demo/ 접속
+2. 캔버스를 클릭하여 게임 시작
+3. **마우스** 또는 **터치**로 패들을 좌우로 움직여 공을 받아내세요
+4. 모든 벽돌을 깨뜨려 레벨을 완료하세요!
+
+### 🎯 현재 구현 상태
+
+✅ **완료된 기능:**
+- Phase 1: 프로젝트 초기 설정 (Vite, Tailwind, Vitest)
+- Phase 2: 코어 로직 (TDD, 73개 테스트 통과)
+  - Physics, Ball, Paddle, Brick, Level, Storage, ScoreManager
+- Phase 3: 게임 엔진 및 렌더링
+  - Game 클래스, 게임 루프, 충돌 감지, 파티클 효과
+  - Canvas 렌더링 (네온 효과, 그라데이션)
+
+🎮 **게임 플레이 가능!**
+- 기본 게임플레이 완전 작동
+- 5개 레벨
+- 점수 및 콤보 시스템
+- 생명 시스템
+- 파티클 효과
+
 ---
 
 ## 📁 프로젝트 구조
