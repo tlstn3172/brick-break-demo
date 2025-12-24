@@ -159,6 +159,11 @@ export class Game {
     }
 
     resetBall() {
+        // Center paddle
+        this.paddle.x = this.canvas.width / 2;
+        this.paddle.targetX = this.paddle.x;
+
+        // Position ball in center, between paddle and bricks
         const ballX = this.canvas.width / 2;
         const ballY = this.canvas.height - GAME_CONFIG.PADDLE_Y_OFFSET - GAME_CONFIG.BALL_RADIUS - 10;
         this.ball.reset(ballX, ballY);
@@ -168,7 +173,7 @@ export class Game {
     levelComplete() {
         this.currentLevel++;
         this.level = new Level(this.currentLevel);
-        this.resetBall();
+        this.resetBall(); // This will also center the paddle
         this.state = GAME_STATES.LEVEL_COMPLETE;
     }
 
