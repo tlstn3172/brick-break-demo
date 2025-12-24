@@ -22,14 +22,14 @@ export class Ball {
 
     /**
      * Launch the ball at a specific angle
-     * @param {number} angle - Launch angle in radians (0 = straight up)
+     * @param {number} angle - Launch angle in radians (0 = straight up, negative = left, positive = right)
      */
     launch(angle) {
         this.active = true;
         // Calculate velocity components
-        // Negative Y because canvas Y increases downward
+        // Negative Y because we want the ball to go UP (canvas Y increases downward)
         this.velocity.x = Math.sin(angle) * this.speed;
-        this.velocity.y = Math.cos(angle) * this.speed;
+        this.velocity.y = -Math.abs(Math.cos(angle)) * this.speed; // Always negative (upward)
     }
 
     /**
