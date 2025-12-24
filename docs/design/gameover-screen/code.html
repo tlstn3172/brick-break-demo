@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Game Result Screen</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Spline+Sans:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#0db9f2",
+                        "background-light": "#f5f8f8",
+                        "background-dark": "#101e22",
+                    },
+                    fontFamily: {
+                        "display": ["Spline Sans", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "1rem", "lg": "2rem", "xl": "3rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark font-display antialiased overflow-hidden select-none">
+<!-- Main Container representing the phone screen -->
+<div class="relative flex h-screen w-full flex-col items-center justify-between overflow-hidden">
+<!-- Abstract Game Background (Simulating blurred game state) -->
+<div class="absolute inset-0 z-0">
+<div class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1614726365723-49cfae96841b?q=80&amp;w=2572&amp;auto=format&amp;fit=crop')] bg-cover bg-center opacity-30 blur-md" data-alt="Abstract neon geometric shapes dark background"></div>
+<!-- Gradient Overlay for readability -->
+<div class="absolute inset-0 bg-gradient-to-b from-[#101e22]/90 via-[#101e22]/95 to-[#101e22]"></div>
+</div>
+<!-- Content Wrapper -->
+<div class="relative z-10 flex w-full max-w-md flex-1 flex-col items-center justify-center p-6 pb-12 gap-8">
+<!-- Result Header -->
+<div class="flex flex-col items-center gap-2 animate-pulse">
+<span class="material-symbols-outlined text-6xl text-primary mb-2">sentiment_dissatisfied</span>
+<h1 class="text-white tracking-wide text-[40px] font-black leading-tight text-center drop-shadow-[0_0_15px_rgba(13,185,242,0.5)]">GAME OVER</h1>
+<p class="text-slate-400 text-sm font-medium tracking-widest uppercase">Level 14 Reached</p>
+</div>
+<!-- Score Card Area -->
+<div class="w-full flex flex-col gap-4">
+<!-- Primary Score Display (Current Score) -->
+<div class="relative flex flex-col items-center justify-center rounded-xl bg-[#1a2c32]/50 border border-[#315a68]/50 p-8 backdrop-blur-sm shadow-xl">
+<div class="absolute -top-3 bg-[#101e23] border border-[#315a68] px-3 py-1 rounded-full">
+<span class="text-[#0db9f2] text-xs font-bold tracking-widest uppercase">Final Score</span>
+</div>
+<p class="text-white text-6xl font-bold tracking-tight mt-2">12,450</p>
+<!-- Stars Rating Visual -->
+<div class="flex gap-2 mt-4">
+<span class="material-symbols-outlined text-yellow-400 fill-1 text-2xl" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-yellow-400 fill-1 text-2xl" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-slate-600 text-2xl">star</span>
+</div>
+</div>
+<!-- Secondary Stats (Best Score & Combo) -->
+<div class="grid grid-cols-2 gap-3">
+<!-- Best Score -->
+<div class="flex flex-col gap-1 rounded-lg bg-[#1a2c32]/30 border border-[#315a68]/30 p-4 items-center text-center">
+<div class="flex items-center gap-1 text-[#90bccb]">
+<span class="material-symbols-outlined text-sm">emoji_events</span>
+<span class="text-xs font-bold tracking-wider">BEST SCORE</span>
+</div>
+<p class="text-white tracking-tight text-xl font-bold">15,000</p>
+</div>
+<!-- Max Combo -->
+<div class="flex flex-col gap-1 rounded-lg bg-[#1a2c32]/30 border border-[#315a68]/30 p-4 items-center text-center">
+<div class="flex items-center gap-1 text-[#90bccb]">
+<span class="material-symbols-outlined text-sm">local_fire_department</span>
+<span class="text-xs font-bold tracking-wider">MAX COMBO</span>
+</div>
+<p class="text-white tracking-tight text-xl font-bold">x42</p>
+</div>
+</div>
+</div>
+<!-- Action Buttons Area -->
+<div class="w-full flex flex-col gap-3 mt-4">
+<!-- Restart Button (Primary) -->
+<button class="group relative w-full cursor-pointer overflow-hidden rounded-full h-14 bg-primary hover:bg-primary/90 transition-all active:scale-95 shadow-[0_0_20px_rgba(13,185,242,0.3)]">
+<div class="absolute inset-0 flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-[#101e23] text-2xl font-bold">replay</span>
+<span class="text-[#101e23] text-lg font-bold tracking-wide uppercase">Try Again</span>
+</div>
+<!-- Shine effect -->
+<div class="absolute inset-0 -translate-x-full group-hover:animate-[shimmer_1.5s_infinite] bg-gradient-to-r from-transparent via-white/20 to-transparent z-10"></div>
+</button>
+<!-- Main Menu Button (Secondary) -->
+<button class="w-full cursor-pointer flex items-center justify-center gap-2 rounded-full h-12 bg-[#223f49]/50 hover:bg-[#223f49] border border-[#315a68] text-white transition-all active:scale-95">
+<span class="material-symbols-outlined text-xl">home</span>
+<span class="text-sm font-bold tracking-wide uppercase">Main Menu</span>
+</button>
+</div>
+</div>
+<!-- Bottom padding for iOS Home Indicator -->
+<div class="h-6 w-full"></div>
+</div>
+</body></html>

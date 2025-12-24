@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="ko"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Neon Breaker - Start Screen</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Spline+Sans:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#0db9f2",
+                        "background-light": "#f5f8f8",
+                        "background-dark": "#101e22",
+                    },
+                    fontFamily: {
+                        "display": ["Spline Sans", "sans-serif"]
+                    },
+                    borderRadius: {"DEFAULT": "1rem", "lg": "2rem", "xl": "3rem", "full": "9999px"},
+                },
+            },
+        }
+    </script>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark font-display antialiased overflow-hidden">
+<div class="relative flex h-screen w-full flex-col items-center justify-between py-12 px-6">
+<!-- Decorative Background Elements (Abstract Neon Bricks) -->
+<div class="absolute inset-0 z-0 overflow-hidden pointer-events-none opacity-20">
+<div class="absolute top-[-10%] left-[-10%] w-[50vh] h-[50vh] rounded-full bg-primary blur-[120px]"></div>
+<div class="absolute bottom-[-10%] right-[-10%] w-[40vh] h-[40vh] rounded-full bg-blue-600 blur-[100px]"></div>
+</div>
+<!-- Top Section: Logo & Title -->
+<div class="z-10 flex flex-col items-center justify-center flex-grow pt-10 pb-6 w-full max-w-sm mx-auto">
+<!-- Logo Image -->
+<div class="relative w-32 h-32 mb-8 flex items-center justify-center">
+<!-- Glow Effect behind logo -->
+<div class="absolute inset-0 bg-primary/40 rounded-full blur-xl"></div>
+<div class="relative w-full h-full bg-background-dark/80 backdrop-blur-sm border border-primary/30 rounded-full flex items-center justify-center shadow-[0_0_30px_rgba(13,185,242,0.3)]">
+<span class="material-symbols-outlined text-primary text-[64px]" style="font-variation-settings: 'FILL' 1, 'wght' 600;">
+                        sports_esports
+                    </span>
+</div>
+</div>
+<!-- Headline -->
+<h1 class="text-slate-900 dark:text-white tracking-tight text-[40px] font-bold leading-tight text-center drop-shadow-lg">
+                NEON<br/><span class="text-primary">BREAKER</span>
+</h1>
+<!-- Meta Text (High Score) -->
+<div class="mt-4 flex items-center gap-2 px-4 py-1.5 rounded-full bg-background-dark/50 border border-white/5 backdrop-blur-md">
+<span class="material-symbols-outlined text-primary text-sm">emoji_events</span>
+<p class="text-slate-500 dark:text-[#90bccb] text-sm font-medium">최고 점수: 12,450</p>
+</div>
+</div>
+<!-- Middle/Bottom Section: Actions -->
+<div class="z-10 w-full max-w-xs flex flex-col gap-4 mb-8">
+<!-- Primary Button: Start Game -->
+<button class="group relative flex w-full cursor-pointer items-center justify-center overflow-hidden rounded-full h-14 bg-primary text-white text-lg font-bold leading-normal tracking-wide shadow-[0_4px_20px_rgba(13,185,242,0.4)] hover:shadow-[0_4px_30px_rgba(13,185,242,0.6)] transition-all duration-300 transform active:scale-95">
+<div class="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300"></div>
+<span class="material-symbols-outlined mr-2 text-[24px]">play_arrow</span>
+<span class="relative z-10">게임 시작</span>
+</button>
+<!-- Secondary Button: Settings -->
+<button class="flex w-full cursor-pointer items-center justify-center overflow-hidden rounded-full h-12 bg-slate-200 dark:bg-white/5 border border-transparent dark:border-white/10 hover:dark:bg-white/10 text-slate-700 dark:text-slate-200 text-base font-semibold leading-normal tracking-wide transition-colors duration-200 active:scale-95">
+<span class="material-symbols-outlined mr-2 text-[20px]">settings</span>
+<span class="truncate">설정</span>
+</button>
+<!-- Tertiary Button: Leaderboard (Optional based on typical game UI) -->
+<button class="flex w-full cursor-pointer items-center justify-center overflow-hidden rounded-full h-12 bg-transparent text-slate-500 dark:text-slate-400 text-sm font-medium hover:text-primary dark:hover:text-primary transition-colors">
+<span class="material-symbols-outlined mr-2 text-[20px]">leaderboard</span>
+<span class="truncate">순위표</span>
+</button>
+</div>
+<!-- Footer: Version -->
+<div class="z-10 pb-4">
+<p class="text-slate-400 dark:text-slate-600 text-xs font-medium text-center">v1.0.2</p>
+</div>
+</div>
+</body></html>

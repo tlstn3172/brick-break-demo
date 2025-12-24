@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="ko"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>Brick Breaker Game</title>
+<!-- Fonts and Icons -->
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Spline+Sans:wght@300;400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<!-- Tailwind CSS -->
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<!-- Theme Configuration -->
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    colors: {
+                        "primary": "#0db9f2",
+                        "background-light": "#f5f8f8",
+                        "background-dark": "#101e22",
+                        "accent-purple": "#a855f7",
+                        "accent-teal": "#2dd4bf",
+                    },
+                    fontFamily: {
+                        "display": ["Spline Sans", "sans-serif"]
+                    },
+                    borderRadius: {
+                        "DEFAULT": "1rem", 
+                        "lg": "2rem", 
+                        "xl": "3rem", 
+                        "full": "9999px"
+                    },
+                    boxShadow: {
+                        "glow-primary": "0 0 15px rgba(13, 185, 242, 0.6)",
+                        "glow-white": "0 0 15px rgba(255, 255, 255, 0.8)",
+                        "glow-purple": "0 0 10px rgba(168, 85, 247, 0.5)",
+                        "glow-teal": "0 0 10px rgba(45, 212, 191, 0.5)",
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        /* Custom neon text effect */
+        .text-glow {
+            text-shadow: 0 0 10px rgba(13, 185, 242, 0.5);
+        }
+    </style>
+<style>
+    body {
+      min-height: max(884px, 100dvh);
+    }
+  </style>
+  </head>
+<body class="bg-background-light dark:bg-background-dark text-slate-900 dark:text-white font-display overflow-hidden select-none h-screen w-full flex flex-col">
+<!-- Header / HUD -->
+<header class="flex items-center justify-between px-6 pt-6 pb-2 z-10">
+<!-- Pause Button -->
+<button class="flex items-center justify-center size-10 rounded-full bg-slate-200 dark:bg-slate-800 hover:bg-slate-300 dark:hover:bg-slate-700 transition-colors shadow-lg">
+<span class="material-symbols-outlined text-slate-700 dark:text-white" style="font-size: 24px;">pause</span>
+</button>
+<!-- Level Indicator -->
+<div class="flex flex-col items-center">
+<span class="text-xs font-semibold tracking-widest text-slate-400">LEVEL</span>
+<span class="text-xl font-bold tracking-tight text-white">3</span>
+</div>
+<!-- Lives -->
+<div class="flex items-center gap-1 bg-slate-200 dark:bg-slate-800/50 px-3 py-1.5 rounded-full border border-slate-300 dark:border-slate-700">
+<span class="material-symbols-outlined text-red-500 fill-current" style="font-variation-settings: 'FILL' 1; font-size: 18px;">favorite</span>
+<span class="material-symbols-outlined text-red-500 fill-current" style="font-variation-settings: 'FILL' 1; font-size: 18px;">favorite</span>
+<span class="material-symbols-outlined text-slate-600" style="font-size: 18px;">favorite</span>
+</div>
+</header>
+<!-- Score Display -->
+<div class="w-full flex justify-center py-2 z-10">
+<div class="flex flex-col items-center">
+<h1 class="text-4xl font-bold text-primary text-glow tracking-wider">1,250</h1>
+<p class="text-[10px] font-bold text-primary/60 tracking-[0.2em] uppercase mt-1">Current Score</p>
+</div>
+</div>
+<!-- Game Area Container -->
+<main class="relative flex-1 w-full max-w-lg mx-auto px-4 mt-4 flex flex-col">
+<!-- Bricks Grid -->
+<div class="grid grid-cols-6 gap-2 w-full px-2">
+<!-- Row 1: Tough Bricks (Purple) -->
+<div class="h-5 rounded-full bg-gradient-to-r from-purple-600 to-purple-400 shadow-glow-purple opacity-100"></div>
+<div class="h-5 rounded-full bg-gradient-to-r from-purple-600 to-purple-400 shadow-glow-purple opacity-100"></div>
+<div class="h-5 rounded-full bg-slate-800 border border-slate-700 opacity-30"></div> <!-- Broken brick -->
+<div class="h-5 rounded-full bg-gradient-to-r from-purple-600 to-purple-400 shadow-glow-purple opacity-100"></div>
+<div class="h-5 rounded-full bg-gradient-to-r from-purple-600 to-purple-400 shadow-glow-purple opacity-100"></div>
+<div class="h-5 rounded-full bg-gradient-to-r from-purple-600 to-purple-400 shadow-glow-purple opacity-100"></div>
+<!-- Row 2: Medium Bricks (Primary Blue) -->
+<div class="h-5 rounded-full bg-gradient-to-r from-cyan-500 to-blue-500 shadow-glow-primary"></div>
+<div class="h-5 rounded-full bg-gradient-to-r from-cyan-500 to-blue-500 shadow-glow-primary"></div>
+<div class="h-5 rounded-full bg-gradient-to-r from-cyan-500 to-blue-500 shadow-glow-primary"></div>
+<div class="h-5 rounded-full bg-gradient-to-r from-cyan-500 to-blue-500 shadow-glow-primary"></div>
+<div class="h-5 rounded-full bg-gradient-to-r from-cyan-500 to-blue-500 shadow-glow-primary"></div>
+<div class="h-5 rounded-full bg-gradient-to-r from-cyan-500 to-blue-500 shadow-glow-primary"></div>
+<!-- Row 3: Soft Bricks (Teal) -->
+<div class="h-5 rounded-full bg-gradient-to-r from-teal-400 to-emerald-400 shadow-glow-teal opacity-90"></div>
+<div class="h-5 rounded-full bg-slate-800 border border-slate-700 opacity-30"></div> <!-- Broken brick -->
+<div class="h-5 rounded-full bg-gradient-to-r from-teal-400 to-emerald-400 shadow-glow-teal opacity-90"></div>
+<div class="h-5 rounded-full bg-gradient-to-r from-teal-400 to-emerald-400 shadow-glow-teal opacity-90"></div>
+<div class="h-5 rounded-full bg-slate-800 border border-slate-700 opacity-30"></div> <!-- Broken brick -->
+<div class="h-5 rounded-full bg-gradient-to-r from-teal-400 to-emerald-400 shadow-glow-teal opacity-90"></div>
+<!-- Row 4: Soft Bricks (Teal) -->
+<div class="h-5 rounded-full bg-gradient-to-r from-teal-400 to-emerald-400 shadow-glow-teal opacity-90"></div>
+<div class="h-5 rounded-full bg-gradient-to-r from-teal-400 to-emerald-400 shadow-glow-teal opacity-90"></div>
+<div class="h-5 rounded-full bg-gradient-to-r from-teal-400 to-emerald-400 shadow-glow-teal opacity-90"></div>
+<div class="h-5 rounded-full bg-gradient-to-r from-teal-400 to-emerald-400 shadow-glow-teal opacity-90"></div>
+<div class="h-5 rounded-full bg-gradient-to-r from-teal-400 to-emerald-400 shadow-glow-teal opacity-90"></div>
+<div class="h-5 rounded-full bg-gradient-to-r from-teal-400 to-emerald-400 shadow-glow-teal opacity-90"></div>
+</div>
+<!-- Game Play Elements (Absolute Positioned within Container) -->
+<div class="absolute inset-0 pointer-events-none">
+<!-- The Ball -->
+<div class="absolute top-[45%] left-[60%] size-4 bg-white rounded-full shadow-glow-white animate-pulse"></div>
+<!-- Particle Effect (Simulated) -->
+<div class="absolute top-[35%] left-[70%] size-1 bg-primary rounded-full opacity-60"></div>
+<div class="absolute top-[34%] left-[71%] size-2 bg-primary rounded-full opacity-40"></div>
+<div class="absolute top-[36%] left-[69%] size-1 bg-white rounded-full opacity-50"></div>
+<!-- The Paddle -->
+<div class="absolute bottom-[20%] left-1/2 -translate-x-1/2 w-28 h-5 bg-primary rounded-full shadow-glow-primary flex items-center justify-center">
+<!-- Inner detail for paddle -->
+<div class="w-8 h-1 bg-white/30 rounded-full"></div>
+</div>
+<!-- Trajectory hint (Optional modern touch) -->
+<div class="absolute bottom-[20%] left-1/2 -translate-x-1/2 -translate-y-2 w-[1px] h-24 bg-gradient-to-t from-primary/30 to-transparent origin-bottom rotate-[15deg]"></div>
+</div>
+</main>
+<!-- Touch Control Zone -->
+<div class="relative w-full px-4 pb-8 pt-2 bg-gradient-to-t from-background-dark to-transparent">
+<div class="flex flex-col items-center gap-3 rounded-2xl border-2 border-dashed border-slate-700/50 bg-slate-800/10 px-6 py-8">
+<div class="flex flex-col items-center gap-1">
+<span class="material-symbols-outlined text-slate-500 animate-bounce">touch_app</span>
+<p class="text-slate-400 text-sm font-bold uppercase tracking-wide">Touch Control Zone</p>
+<p class="text-slate-600 text-xs font-normal">Slide anywhere to move paddle</p>
+</div>
+</div>
+<!-- iOS Home Indicator Safe Area -->
+<div class="h-1 w-32 bg-slate-700/50 rounded-full mx-auto mt-6 mb-2"></div>
+</div>
+</body></html>
