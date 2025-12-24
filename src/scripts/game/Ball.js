@@ -108,7 +108,7 @@ export class Ball {
             this.velocity.y * this.velocity.y
         );
         this.velocity.x = Math.sin(angle) * speed;
-        this.velocity.y = Math.cos(angle) * speed;
+        this.velocity.y = -Math.abs(Math.cos(angle)) * speed; // Always negative (upward)
     }
 
     /**
