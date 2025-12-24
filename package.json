@@ -1,0 +1,40 @@
+{
+  "name": "brick-break-demo",
+  "version": "1.0.0",
+  "description": "Modern web-based brick breaker game with neon design, built with TDD and SOLID principles",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview",
+    "test": "vitest",
+    "test:coverage": "vitest --coverage"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tlstn3172/brick-break-demo.git"
+  },
+  "keywords": [
+    "game",
+    "brick-breaker",
+    "canvas",
+    "javascript",
+    "tdd",
+    "solid"
+  ],
+  "author": "Developer",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/tlstn3172/brick-break-demo/issues"
+  },
+  "homepage": "https://github.com/tlstn3172/brick-break-demo#readme",
+  "devDependencies": {
+    "@vitest/coverage-v8": "^4.0.16",
+    "@vitest/ui": "^4.0.16",
+    "autoprefixer": "^10.4.23",
+    "postcss": "^8.5.6",
+    "tailwindcss": "^3.4.19",
+    "vite": "^5.4.11",
+    "vitest": "^4.0.16"
+  }
+}
