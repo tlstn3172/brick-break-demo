@@ -60,15 +60,19 @@ export class Game {
     }
 
     gameLoop(currentTime) {
-        if (this.state !== GAME_STATES.PLAYING) return;
+        // Only continue loop if playing
+        if (this.state === GAME_STATES.PLAYING) {
+            const deltaTime = (currentTime - this.lastTime) / 1000;
+            this.lastTime = currentTime;
 
-        const deltaTime = (currentTime - this.lastTime) / 1000; // Convert to seconds
-        this.lastTime = currentTime;
+            this.update(deltaTime);
+            this.render();
 
-        this.update(deltaTime);
-        this.render();
-
-        this.animationId = requestAnimationFrame(this.gameLoop.bind(this));
+            this.animationId = requestAnimationFrame(this.gameLoop.bind(this));
+        } else {
+            // Still render when paused, but don't update
+            this.render();
+        }
     }
 
     update(deltaTime) {
