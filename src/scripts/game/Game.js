@@ -159,14 +159,21 @@ export class Game {
     }
 
     resetBall() {
-        // Center paddle
+        // Center paddle first
         this.paddle.x = this.canvas.width / 2;
         this.paddle.targetX = this.paddle.x;
 
-        // Position ball just above paddle, in center
+        // Calculate ball position - always center, just above paddle
         const ballX = this.canvas.width / 2;
         const ballY = this.paddle.y - GAME_CONFIG.BALL_RADIUS - 5;
+
+        // Reset ball completely - position AND velocity
         this.ball.reset(ballX, ballY);
+
+        // Make sure ball is inactive until user clicks
+        this.ball.active = false;
+        this.ball.velocity = { x: 0, y: 0 };
+
         this.state = GAME_STATES.PAUSED;
     }
 
