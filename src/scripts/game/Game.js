@@ -33,8 +33,12 @@ export class Game {
         // Game loop
         this.lastTime = 0;
         this.animationId = null;
+        this.isRunning = false;
 
         this.init();
+
+        // Start render loop immediately (but won't update until PLAYING)
+        this.startRenderLoop();
     }
 
     init() {
@@ -56,23 +60,28 @@ export class Game {
         this.state = GAME_STATES.PLAYING;
         this.ball.launch(0); // Launch straight up
         this.lastTime = performance.now();
+    }
+
+    startRenderLoop() {
+        if (this.isRunning) return;
+        this.isRunning = true;
+        this.lastTime = performance.now();
         this.gameLoop(this.lastTime);
     }
 
     gameLoop(currentTime) {
-        // Only continue loop if playing
+        // Always continue the loop for rendering
+        this.animationId = requestAnimationFrame(this.gameLoop.bind(this));
+
+        // Only update game logic if playing
         if (this.state === GAME_STATES.PLAYING) {
             const deltaTime = (currentTime - this.lastTime) / 1000;
             this.lastTime = currentTime;
-
             this.update(deltaTime);
-            this.render();
-
-            this.animationId = requestAnimationFrame(this.gameLoop.bind(this));
-        } else {
-            // Still render when paused, but don't update
-            this.render();
         }
+
+        // Always render
+        this.render();
     }
 
     update(deltaTime) {
